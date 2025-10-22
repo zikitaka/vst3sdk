@@ -15,19 +15,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Download Steinberg VST3 SDK
+    - name: Clone Steinberg VST3 SDK
       run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git vst3sdk
 
-    - name: Configure build with CMake
-      run: cmake -S . -B build -DVST3_SDK_DIR=./vst3sdk -A x64
+    - name: Configure CMake
+      run: cmake -S . -B build -DVST3_SDK_DIR="${{ github.workspace }}/vst3sdk" -A x64
 
     - name: Build plugin
       run: cmake --build build --config Release
 
-    - name: Upload VST3 artifact
+    - name: Upload plugin artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Plugin-VST3
+        name: OBSEQ_VST3
         path: |
           build/**/*.vst3
           build/**/*.dll
