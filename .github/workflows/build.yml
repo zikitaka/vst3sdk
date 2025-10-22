@@ -13,10 +13,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-        
-- name: Download VST3 SDK
-  run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git vst3sdk
-
+      - name: Download VST3 SDK
+        run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git
 
       - name: Install CMake
         run: choco install cmake -y
