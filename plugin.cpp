@@ -20,7 +20,6 @@ public:
     tresult PLUGIN_API initialize(FUnknown* ctx) SMTG_OVERRIDE {
         tresult res = AudioEffect::initialize(ctx);
         if (res != kResultOk) return res;
-
         addAudioInput(UID("In"), SpeakerArr::kStereo);
         addAudioOutput(UID("Out"), SpeakerArr::kStereo);
         return kResultOk;
@@ -33,7 +32,6 @@ public:
         lf = 2.0f * sinf(float(M_PI) * LOW_FREQ / sr);
         hf = 2.0f * sinf(float(M_PI) * HIGH_FREQ / sr);
 
-        // default gains
         float lowGain = dbToMul(low_dB);
         float midGain = dbToMul(mid_dB);
         float highGain = dbToMul(high_dB);
