@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(ThreeBandEQ VERSION 1.0.0)
 
-set(VST3_SDK_DIR "${CMAKE_SOURCE_DIR}/vst3sdk/vst3sdk"
+set(VST3_SDK_DIR "${CMAKE_SOURCE_DIR}/vst3sdk")
 
 
 # Include Steinberg helpers
