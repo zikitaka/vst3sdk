@@ -2,30 +2,30 @@ name: Build VST3 Plugin
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Download VST3 SDK
-  run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git vst3sdk/vst3sdk
+        run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git
 
       - name: Install CMake
         run: choco install cmake -y
 
-      - name: Configure
+      - name: Configure CMake
         run: cmake -S . -B build -DVST3_SDK_DIR=./vst3sdk/vst3sdk -A x64
 
-
-      - name: Build
+      - name: Build plugin
         run: cmake --build build --config Release
 
-      - name: Upload
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ThreeBandEQ-VST3
