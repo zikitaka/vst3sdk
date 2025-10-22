@@ -13,13 +13,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download VST3 SDK
-        run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git
+  run: git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git vst3sdk/vst3sdk
 
       - name: Install CMake
         run: choco install cmake -y
 
       - name: Configure
-        run: cmake -S . -B build -DVST3_SDK_DIR=./vst3sdk -A x64
+        run: cmake -S . -B build -DVST3_SDK_DIR=./vst3sdk/vst3sdk -A x64
+
 
       - name: Build
         run: cmake --build build --config Release
